@@ -1,0 +1,2426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cars Low — Japanese Car Exports | Direct Auction Access</title>
+  <meta name="description" content="Direct export of premium Japanese vehicles from USS, TAA & CAA auctions. 150-point inspection, deregistration, and worldwide shipping." />
+
+  <!-- Fonts: Plus Jakarta Sans (Matches the reference screenshot font) + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═════════════════════════════════════════════════════
+       DESIGN TOKENS & SYSTEM
+    ═════════════════════════════════════════════════════ */
+    :root {
+      --white:       #ffffff;
+      --offwhite:    #f8f9fa;
+      --card-bg:     #ffffff;
+      --border:      #eaeaea;
+      --border-dark: #222222;
+      --black:       #0d0e12;
+      --dark:        #15171e;
+      --gray-900:    #111217;
+      --gray-700:    #333742;
+      --gray-500:    #636b78;
+      --gray-400:    #8b93a0;
+      --gray-200:    #e5e8ec;
+      --gray-100:    #f2f4f7;
+
+      /* Japanese Racing Red Accent */
+      --red:         #D0021B;
+      --red-hover:   #B00116;
+      --red-light:   #FFF1F2;
+      --red-glow:    rgba(208, 2, 27, 0.16);
+
+      --font-heading:'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body:   'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --nav-h:       80px;
+      --max-w:       1360px;
+      --radius-sm:   6px;
+      --radius-md:   12px;
+      --radius-lg:   20px;
+      --radius-pill: 9999px;
+
+      --ease:        cubic-bezier(0.16, 1, 0.3, 1);
+      --transition:  all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* ═════════════════════════════════════════════════════
+       VECTOR ICON SYSTEM
+    ═════════════════════════════════════════════════════ */
+    .icon {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2;
+      stroke: currentColor;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      display: inline-block;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
+    .icon-sm {
+      width: 14px;
+      height: 14px;
+      stroke-width: 2;
+    }
+
+    .icon-md {
+      width: 20px;
+      height: 20px;
+      stroke-width: 1.9;
+    }
+
+    .icon-lg {
+      width: 24px;
+      height: 24px;
+      stroke-width: 1.8;
+    }
+
+    .icon-red {
+      color: var(--red);
+    }
+
+    .flag-icon {
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 2px;
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+      flex-shrink: 0;
+    }
+
+    /* ═════════════════════════════════════════════════════
+       NAVIGATION BAR
+    ═════════════════════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      transition: var(--transition);
+    }
+
+    nav.scrolled {
+      height: 72px;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    .nav-container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 3rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .brand-logo .dot {
+      color: var(--red);
+    }
+
+    .brand-badge {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--gray-100);
+      color: var(--gray-500);
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--gray-700);
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--black);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s var(--ease);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-quote {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--white);
+      background: var(--black);
+      padding: 0.65rem 1.4rem;
+      border-radius: var(--radius-pill);
+      border: none;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-quote:hover {
+      background: var(--red);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px var(--red-glow);
+    }
+
+    .ham-btn {
+      display: none;
+      background: none;
+      border: none;
+      padding: 6px;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .ham-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--black);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      position: fixed;
+      inset: 0;
+      background: var(--white);
+      z-index: 999;
+      padding: calc(var(--nav-h) + 2rem) 2rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: translateX(100%);
+      transition: transform 0.4s var(--ease);
+    }
+
+    .mobile-drawer.open {
+      transform: translateX(0);
+    }
+
+    .mobile-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .mobile-links a {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--black);
+    }
+
+    .mobile-links a:hover {
+      color: var(--red);
+    }
+
+    /* ═════════════════════════════════════════════════════
+       HERO SECTION — DUAL CANVAS (DESKTOP & MOBILE)
+    ═════════════════════════════════════════════════════ */
+    #hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--white);
+      display: flex;
+      align-items: center;
+      padding-top: var(--nav-h);
+      overflow: hidden;
+    }
+
+    /* Desktop full canvas background using hero_clean.jpg */
+    @media (min-width: 992px) {
+      #hero {
+        background-image: url('assetes/hero_clean.jpg');
+        background-repeat: no-repeat;
+        background-position: right center;
+        background-size: contain;
+      }
+    }
+
+    .hero-container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 2rem clamp(1.25rem, 4vw, 3rem) 3rem;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      min-height: calc(100vh - var(--nav-h));
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-content {
+      max-width: 580px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Tag badge */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--offwhite);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-pill);
+      margin-bottom: 1.75rem;
+      width: fit-content;
+    }
+
+    .hero-badge .tag-text {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-700);
+    }
+
+    .hero-badge .red-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+    }
+
+    /* Main Headline matching reference screenshot font */
+    .hero-headline {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 4.3vw, 4.4rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      color: var(--black);
+      margin-bottom: 1.35rem;
+    }
+
+    .hero-headline .highlight {
+      color: var(--red);
+    }
+
+    .hero-desc {
+      font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+      color: var(--gray-500);
+      font-weight: 400;
+      line-height: 1.75;
+      margin-bottom: 2.25rem;
+      max-width: 480px;
+    }
+
+    /* Button Group matching reference pill style */
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary-pill {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--white);
+      background: var(--black);
+      padding: 0.95rem 2.2rem;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--black);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .btn-primary-pill:hover {
+      background: var(--red);
+      border-color: var(--red);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--red-glow);
+    }
+
+    .btn-secondary-pill {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--black);
+      background: var(--white);
+      padding: 0.95rem 1.8rem;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--border);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-secondary-pill:hover {
+      border-color: var(--black);
+      background: var(--gray-100);
+    }
+
+    /* Lower Left Preview Widgets (Matching the screenshot's bottom-left cards) */
+    .hero-preview-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 460px;
+    }
+
+    .preview-card {
+      background: var(--offwhite);
+      border: 1px solid var(--border);
+      padding: 0.85rem 1.1rem;
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .preview-card:hover {
+      border-color: var(--gray-400);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .preview-card .pc-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .preview-card .pc-title {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .preview-card .pc-sub {
+      font-size: 0.72rem;
+      color: var(--gray-500);
+    }
+
+    /* Mobile Hero Graphic (Shown only on small screens) */
+    .hero-mobile-visual {
+      display: none;
+      width: 100%;
+      margin-top: 2rem;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .hero-mobile-visual img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    /* ═════════════════════════════════════════════════════
+       TRUST & PARTNERS BAR (WITH REAL VECTOR ICONS)
+    ═════════════════════════════════════════════════════ */
+    .trust-bar {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--offwhite);
+      padding: 1.5rem 0;
+    }
+
+    .trust-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 3rem);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.95rem;
+    }
+
+    .trust-icon-box {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background: var(--white);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red);
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .trust-item:hover .trust-icon-box {
+      background: var(--red-light);
+      border-color: var(--red);
+      transform: translateY(-2px);
+    }
+
+    .trust-text h4 {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.25;
+    }
+
+    .trust-text p {
+      font-size: 0.72rem;
+      color: var(--gray-500);
+      margin-top: 0.15rem;
+    }
+
+    /* ═════════════════════════════════════════════════════
+       INVENTORY SECTION (HIGH RESOLUTION & PROMINENT CARS)
+    ═════════════════════════════════════════════════════ */
+    #inventory {
+      padding: clamp(4.5rem, 8vh, 7rem) 0;
+      background: var(--white);
+    }
+
+    .section-wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 3rem);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2.75rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-eyebrow::before {
+      content: '';
+      width: 18px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      line-height: 1.1;
+    }
+
+    .section-desc {
+      font-size: 0.95rem;
+      color: var(--gray-500);
+      max-width: 480px;
+      margin-top: 0.5rem;
+    }
+
+    /* Filters */
+    .filter-pills {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-pill {
+      font-family: var(--font-heading);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 0.5rem 1.1rem;
+      border-radius: var(--radius-pill);
+      background: var(--gray-100);
+      border: 1px solid var(--border);
+      color: var(--gray-700);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .filter-pill:hover,
+    .filter-pill.active {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    /* Cars Grid */
+    .inventory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .car-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .car-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+      border-color: var(--gray-400);
+    }
+
+    /* Top Badge & Grade */
+    .car-card-header {
+      padding: 1.25rem 1.25rem 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .car-status-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .car-status-badge.in-stock {
+      background: var(--red-light);
+      color: var(--red);
+    }
+
+    .car-status-badge.reserved {
+      background: var(--gray-100);
+      color: var(--gray-700);
+    }
+
+    .car-auction-grade {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--gray-500);
+      background: var(--gray-100);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* High-contrast car presentation stage */
+    .car-stage {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 1.5rem;
+      background: radial-gradient(ellipse at 50% 65%, rgba(0, 0, 0, 0.03) 0%, transparent 70%);
+      position: relative;
+    }
+
+    .car-stage img {
+      max-height: 100%;
+      width: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.12));
+      transition: transform 0.5s var(--ease);
+    }
+
+    .car-card:hover .car-stage img {
+      transform: scale(1.06);
+    }
+
+    /* Car Information */
+    .car-card-body {
+      padding: 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .car-meta-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .car-make-year {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+    }
+
+    .car-price {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--black);
+    }
+
+    .car-price span {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--gray-500);
+    }
+
+    .car-model-name {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      margin-top: 0.2rem;
+    }
+
+    /* Spec tags with real vector icons */
+    .car-specs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.45rem;
+      margin: 0.5rem 0;
+    }
+
+    .spec-item {
+      font-size: 0.7rem;
+      color: var(--gray-700);
+      background: var(--offwhite);
+      padding: 0.35rem 0.65rem;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .spec-item .icon {
+      color: var(--gray-400);
+    }
+
+    /* Card Actions */
+    .car-card-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      padding-top: 0.5rem;
+    }
+
+    .btn-inquire {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 0.7rem 1.2rem;
+      border-radius: var(--radius-pill);
+      background: var(--black);
+      color: var(--white);
+      border: 1px solid var(--black);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-inquire:hover {
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    /* ═════════════════════════════════════════════════════
+       AUCTION & EXPORT PROCESS (THE 4 STEPS)
+    ═════════════════════════════════════════════════════ */
+    #process {
+      padding: clamp(4.5rem, 8vh, 7rem) 0;
+      background: var(--offwhite);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .process-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 2.25rem 1.75rem;
+      position: relative;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .process-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+      border-color: var(--gray-400);
+    }
+
+    .process-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--border);
+      transition: background 0.3s ease;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+    }
+
+    .process-card:hover::before {
+      background: var(--red);
+    }
+
+    .process-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+
+    .process-step-num {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--gray-200);
+      line-height: 1;
+      transition: color 0.3s ease;
+    }
+
+    .process-card:hover .process-step-num {
+      color: var(--red);
+    }
+
+    .process-icon-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-700);
+      transition: var(--transition);
+    }
+
+    .process-card:hover .process-icon-badge {
+      background: var(--red-light);
+      color: var(--red);
+    }
+
+    .process-title {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 0.65rem;
+    }
+
+    .process-desc {
+      font-size: 0.82rem;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    /* ═════════════════════════════════════════════════════
+       INSPECTION & QUALITY ASSURANCE (WHY CARS LOW)
+    ═════════════════════════════════════════════════════ */
+    #quality {
+      padding: clamp(4.5rem, 8vh, 7rem) 0;
+      background: var(--white);
+    }
+
+    .quality-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+
+    .quality-content .section-title {
+      margin-bottom: 1.25rem;
+    }
+
+    .quality-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .q-feat-item {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .q-feat-icon-box {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--red-light);
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .q-feat-text h4 {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 0.25rem;
+    }
+
+    .q-feat-text p {
+      font-size: 0.84rem;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+
+    /* Interactive Auction Grade Table */
+    .auction-table-box {
+      background: var(--gray-900);
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.75rem, 3vw, 2.5rem);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .auction-table-box::after {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, var(--red-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .atb-head {
+      margin-bottom: 1.75rem;
+    }
+
+    .atb-head h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .atb-head p {
+      font-size: 0.78rem;
+      color: var(--gray-400);
+      margin-top: 0.2rem;
+    }
+
+    .grade-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .grade-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+
+    .grade-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .grade-tag {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--white);
+      background: var(--red);
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .grade-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray-200);
+    }
+
+    .grade-status {
+      font-size: 0.72rem;
+      color: var(--gray-400);
+    }
+
+    /* ═════════════════════════════════════════════════════
+       INTERACTIVE FREIGHT & SHIPPING CALCULATOR
+    ═════════════════════════════════════════════════════ */
+    #estimator {
+      padding: clamp(4.5rem, 8vh, 7rem) 0;
+      background: var(--offwhite);
+      border-top: 1px solid var(--border);
+    }
+
+    .estimator-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: clamp(2rem, 4vw, 3.5rem);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    }
+
+    .est-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .est-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--black);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .form-select, .form-input {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      padding: 0.85rem 1.1rem;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--black);
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .form-select:focus, .form-input:focus {
+      border-color: var(--black);
+    }
+
+    .est-results {
+      background: var(--gray-900);
+      color: var(--white);
+      padding: 2.25rem;
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .er-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .er-dest-display {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .er-meta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 0;
+    }
+
+    .er-meta-item p {
+      font-size: 0.68rem;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .er-meta-item h5 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .btn-est-inquire {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-align: center;
+      background: var(--red);
+      color: var(--white);
+      padding: 0.85rem 1.5rem;
+      border-radius: var(--radius-pill);
+      border: none;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-est-inquire:hover {
+      background: var(--red-hover);
+      box-shadow: 0 4px 14px var(--red-glow);
+    }
+
+    /* ═════════════════════════════════════════════════════
+       CALL TO ACTION (MINIMAL & LUXURY)
+    ═════════════════════════════════════════════════════ */
+    #cta {
+      background: var(--gray-900);
+      color: var(--white);
+      padding: clamp(5rem, 10vh, 8rem) 0;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .cta-glow-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 350px;
+      background: radial-gradient(ellipse, rgba(208, 2, 27, 0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 10;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 2rem);
+    }
+
+    .cta-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cta-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-desc {
+      font-size: 1rem;
+      color: var(--gray-400);
+      margin-bottom: 2.75rem;
+      line-height: 1.7;
+    }
+
+    .cta-btns {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-cta-primary {
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--white);
+      background: var(--red);
+      padding: 1rem 2.4rem;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--red);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .btn-cta-primary:hover {
+      background: var(--red-hover);
+      box-shadow: 0 6px 20px var(--red-glow);
+      transform: translateY(-2px);
+    }
+
+    .btn-cta-secondary {
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--white);
+      background: transparent;
+      padding: 1rem 2.2rem;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-cta-secondary:hover {
+      border-color: var(--white);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* ═════════════════════════════════════════════════════
+       FOOTER
+    ═════════════════════════════════════════════════════ */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 4.5rem 0 2.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: 3.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .footer-brand .brand-logo {
+      color: var(--white);
+      margin-bottom: 0.85rem;
+    }
+
+    .footer-desc {
+      font-size: 0.84rem;
+      color: var(--gray-400);
+      max-width: 320px;
+      line-height: 1.7;
+    }
+
+    .footer-col h5 {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--gray-400);
+      transition: color 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    .footer-contact-item {
+      font-size: 0.82rem;
+      color: var(--gray-400);
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+    }
+
+    .footer-contact-item .icon {
+      color: var(--red);
+      margin-top: 3px;
+    }
+
+    .footer-contact-item span {
+      font-size: 0.68rem;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      font-weight: 700;
+      display: block;
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-size: 0.74rem;
+      color: var(--gray-500);
+    }
+
+    .footer-ports {
+      font-size: 0.72rem;
+      color: var(--gray-400);
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* ═════════════════════════════════════════════════════
+       RESPONSIVE BREAKPOINTS
+    ═════════════════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+      .trust-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+      .process-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .quality-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .est-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .nav-links, .btn-quote {
+        display: none;
+      }
+      .ham-btn {
+        display: flex;
+      }
+      #hero {
+        background-image: none !important;
+        min-height: auto;
+        padding-bottom: 4rem;
+      }
+      .hero-container {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .hero-mobile-visual {
+        display: block;
+      }
+      .hero-preview-cards {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-headline {
+        font-size: 2.4rem;
+      }
+      .hero-preview-cards {
+        grid-template-columns: 1fr;
+      }
+      .hero-cta-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-primary-pill, .btn-secondary-pill {
+        text-align: center;
+        justify-content: center;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════
+       NAVIGATION BAR
+  ═══════════════════════════════════════════════════ -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="brand-wrap">
+        <a href="#hero" class="brand-logo">CARS LOW<span class="dot">.</span></a>
+        <span class="brand-badge">Japan Export</span>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#hero" class="active">Home</a></li>
+        <li><a href="#inventory">Inventory</a></li>
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#quality">Auction Inspection</a></li>
+        <li><a href="#estimator">Shipping Rates</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="#estimator" class="btn-quote">
+          <span>Get a Quote</span>
+          <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <button class="ham-btn" id="hamBtn" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <ul class="mobile-links">
+      <li><a href="#hero" class="m-link">Home</a></li>
+      <li><a href="#inventory" class="m-link">Inventory</a></li>
+      <li><a href="#process" class="m-link">How It Works</a></li>
+      <li><a href="#quality" class="m-link">Auction Inspection</a></li>
+      <li><a href="#estimator" class="m-link">Shipping Rates</a></li>
+      <li><a href="#cta" class="m-link">Contact JDM Agent</a></li>
+    </ul>
+
+    <div>
+      <a href="#estimator" class="btn-primary-pill m-link" style="width: 100%; text-align: center; justify-content: center;">
+        <span>Request Auction Sheet</span>
+        <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <p style="font-size: 0.75rem; color: var(--gray-500); margin-top: 1rem; text-align: center;">
+        Tokyo / Yokohama / Nagoya Logistics
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       HERO SECTION — DUAL CANVAS (DESKTOP & MOBILE)
+  ═══════════════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-container">
+      
+      <!-- Left Content matching reference screenshot typography & layout -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <!-- Real Japanese Flag Vector SVG -->
+          <svg class="flag-icon" viewBox="0 0 24 16" width="18" height="12">
+            <rect width="24" height="16" fill="#ffffff"/>
+            <circle cx="12" cy="8" r="4.5" fill="#D0021B"/>
+          </svg>
+          <span class="tag-text">Direct JDM Export · Tokyo & Nagoya</span>
+          <span class="red-dot"></span>
+        </div>
+
+        <h1 class="hero-headline">
+          Export Japan’s <br/>
+          Finest <span class="highlight">Machinery.</span>
+        </h1>
+
+        <p class="hero-desc">
+          Certified live bidding across 140+ Japanese auction houses including USS, TAA, & CAA. Every car physically inspected, de-registered, and delivered door-to-door worldwide.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#inventory" class="btn-primary-pill">
+            <span>Explore Inventory</span>
+            <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="#process" class="btn-secondary-pill">
+            <span>How It Works</span>
+            <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          </a>
+        </div>
+
+        <!-- Lower Left Mini Preview Cards matching reference screenshot with Real Vector Icons -->
+        <div class="hero-preview-cards">
+          <div class="preview-card">
+            <span class="pc-tag">
+              <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              Inspection Certified
+            </span>
+            <div class="pc-title">Grade 4.5 / A Mint Spec</div>
+            <div class="pc-sub">150-Point Pre-Export Guarantee</div>
+          </div>
+
+          <div class="preview-card">
+            <span class="pc-tag">
+              <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M12 10v4"/></svg>
+              Global Shipping
+            </span>
+            <div class="pc-title">RoRo & Container</div>
+            <div class="pc-sub">Yokohama & Nagoya to 50+ Ports</div>
+          </div>
+        </div>
+
+        <!-- Mobile-only full visual banner -->
+        <div class="hero-mobile-visual">
+          <img src="assetes/hero_visual.jpg" alt="Japanese Export Cars" />
+        </div>
+      </div>
+
+      <!-- Right column acts as transparent grid space on desktop (handled by background-image hero_clean.jpg) -->
+      <div></div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       TRUST & ACCREDITATION BAR (WITH REAL VECTOR ICONS)
+  ═══════════════════════════════════════════════════ -->
+  <section class="trust-bar">
+    <div class="trust-grid">
+      
+      <!-- Icon 1: Auction Gavel -->
+      <div class="trust-item">
+        <div class="trust-icon-box">
+          <svg class="icon icon-md" viewBox="0 0 24 24"><path d="m14 13-7.5 7.5c-.8.8-2 .8-2.8 0s-.8-2 0-2.8L11.2 10.2"/><path d="m16 16 6-6"/><path d="m8 8 6-6"/><path d="m9 7 8 8"/><path d="m21 11-8-8"/></svg>
+        </div>
+        <div class="trust-text">
+          <h4>USS & TAA Partner</h4>
+          <p>Direct live auction terminals daily</p>
+        </div>
+      </div>
+
+      <!-- Icon 2: Document Inspection Translation -->
+      <div class="trust-item">
+        <div class="trust-icon-box">
+          <svg class="icon icon-md" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg>
+        </div>
+        <div class="trust-text">
+          <h4>Certified Translation</h4>
+          <p>Full Japanese auction sheet audit</p>
+        </div>
+      </div>
+
+      <!-- Icon 3: Insured Marine Freight Ship -->
+      <div class="trust-item">
+        <div class="trust-icon-box">
+          <svg class="icon icon-md" viewBox="0 0 24 24"><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/></svg>
+        </div>
+        <div class="trust-text">
+          <h4>Insured Freight</h4>
+          <p>Comprehensive marine cargo cover</p>
+        </div>
+      </div>
+
+      <!-- Icon 4: Lightning Fast Deregistration -->
+      <div class="trust-item">
+        <div class="trust-icon-box">
+          <svg class="icon icon-md" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="trust-text">
+          <h4>Fast Deregistration</h4>
+          <p>Export certificates issued in 48h</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       FEATURED INVENTORY SECTION (REAL VECTOR ICONS)
+  ═══════════════════════════════════════════════════ -->
+  <section id="inventory">
+    <div class="section-wrap">
+      
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Export Ready Stock</div>
+          <h2 class="section-title">Verified Vehicles Available</h2>
+          <p class="section-desc">Hand-picked Japanese pre-owned & brand new models ready for immediate worldwide dispatch.</p>
+        </div>
+
+        <div class="filter-pills">
+          <button class="filter-pill active" onclick="filterCars('all')">
+            <svg class="icon icon-sm" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+            All Stock
+          </button>
+          <button class="filter-pill" onclick="filterCars('suv')">
+            <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+            4WD & SUVs
+          </button>
+          <button class="filter-pill" onclick="filterCars('sedan')">
+            <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+            Sedan & Hybrid
+          </button>
+          <button class="filter-pill" onclick="filterCars('truck')">
+            <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><path d="M15 18h9v-5a2 2 0 0 0-2-2h-4v7Z"/></svg>
+            Trucks
+          </button>
+        </div>
+      </div>
+
+      <div class="inventory-grid">
+
+        <!-- CAR 1: Toyota Land Cruiser 250 (images.jpg) -->
+        <div class="car-card" data-cat="suv">
+          <div class="car-card-header">
+            <span class="car-status-badge in-stock">
+              <span class="badge-dot"></span> In Stock · Nagoya
+            </span>
+            <span class="car-auction-grade">
+              <svg class="icon icon-sm icon-red" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Grade 5.0 / A
+            </span>
+          </div>
+
+          <div class="car-stage">
+            <img src="assetes/images.jpg" alt="Toyota Land Cruiser 250 Prado 2024" />
+          </div>
+
+          <div class="car-card-body">
+            <div>
+              <div class="car-meta-top">
+                <span class="car-make-year">Toyota · 2024</span>
+                <div class="car-price">$44,800 <span>FOB</span></div>
+              </div>
+              <h3 class="car-model-name">Land Cruiser 250 Prado</h3>
+            </div>
+
+            <div class="car-specs-grid">
+              <div class="spec-item">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                2.8L Turbo Diesel
+              </div>
+              <div class="spec-item">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                Full-Time 4WD
+              </div>
+              <div class="spec-item">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="4" x2="4" y1="21" y2="14"/><line x1="4" x2="4" y1="10" y2="3"/><line x1="12" x2="12" y1="21" y2="12"/><line x1="12" x2="12" y1="8" y2="3"/><line x1="20" x2="20" y1="21" y2="16"/><line x1="20" x2="20" y1="12" y2="3"/></svg>
+                8-Speed Auto
+              </div>
+              <div class="spec-item">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+                1,200 km
+              </div>
+            </div>
+
+            <div class="car-card-actions">
+              <a href="#estimator" class="btn-inquire">
+                <span>Request Export Quote</span>
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CAR 2: Toyota Camry Hybrid 2025 (images (1).jpg) -->
+        <div class="car-card" data-cat="sedan">
+          <div class="car-card-header">
+            <span class="car-status-badge in-stock">
+              <span class="badge-dot"></span> In Stock · Yokohama
+            </span>
+            <span class="car-auction-grade">
+              <svg class="icon icon-sm icon-red" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Grade 4.5 / A
+            </span>
+          </div>
+
+          <div class="car-stage">
+            <img src="assetes/images (1).jpg" alt="Toyota Camry Hybrid 2025" />
+          </div>
+
+          <div class="car-card-body">
+            <div>
+              <div class="car-meta-top">
+                <span class="car-make-year">Toyota · 2025</span>
+                <div class="car-price">$24,200 <span>FOB</span></div>
+              </div>
+              <h3 class="car-model-name">Camry Hybrid G-Spec</h3>
+            </div>
+
+            <div class="car-specs-grid">
+              <div class="spec-item">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                2.5L Hybrid THS
+              </div>
+              <div class="spec-item">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                E-Four AWD
+              </div>
+              <div class="spec-item">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="4" x2="4" y1="21" y2="14"/><line x1="4" x2="4" y1="10" y2="3"/><line x1="12" x2="12" y1="21" y2="12"/><line x1="12" x2="12" y1="8" y2="3"/><line x1="20" x2="20" y1="21" y2="16"/><line x1="20" x2="20" y1="12" y2="3"/></svg>
+                e-CVT Auto
+              </div>
+              <div class="spec-item">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+                4,500 km
+              </div>
+            </div>
+
+            <div class="car-card-actions">
+              <a href="#estimator" class="btn-inquire">
+                <span>Request Export Quote</span>
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CAR 3: Toyota Fortuner Legender (images (2).jpg) -->
+        <div class="car-card" data-cat="suv">
+          <div class="car-card-header">
+            <span class="car-status-badge reserved">
+              <span class="badge-dot"></span> Reserved · Kobe
+            </span>
+            <span class="car-auction-grade">
+              <svg class="icon icon-sm icon-red" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Grade 4.5 / B
+            </span>
+          </div>
+
+          <div class="car-stage">
+            <img src="assetes/images (2).jpg" alt="Toyota Fortuner Legender 2024" />
+          </div>
+
+          <div class="car-card-body">
+            <div>
+              <div class="car-meta-top">
+                <span class="car-make-year">Toyota · 2024</span>
+                <div class="car-price">$32,500 <span>FOB</span></div>
+              </div>
+              <h3 class="car-model-name">Fortuner Legender 4x4</h3>
+            </div>
+
+            <div class="car-specs-grid">
+              <div class="spec-item">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                2.8L 1GD-FTV
+              </div>
+              <div class="spec-item">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                Part-Time 4WD
+              </div>
+              <div class="spec-item">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="4" x2="4" y1="21" y2="14"/><line x1="4" x2="4" y1="10" y2="3"/><line x1="12" x2="12" y1="21" y2="12"/><line x1="12" x2="12" y1="8" y2="3"/><line x1="20" x2="20" y1="21" y2="16"/><line x1="20" x2="20" y1="12" y2="3"/></svg>
+                6-Speed Auto
+              </div>
+              <div class="spec-item">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+                8,100 km
+              </div>
+            </div>
+
+            <div class="car-card-actions">
+              <a href="#estimator" class="btn-inquire">
+                <span>Request Export Quote</span>
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CAR 4: Toyota Hilux GR Sport (s.jpg) -->
+        <div class="car-card" data-cat="truck">
+          <div class="car-card-header">
+            <span class="car-status-badge in-stock">
+              <span class="badge-dot"></span> In Stock · Osaka
+            </span>
+            <span class="car-auction-grade">
+              <svg class="icon icon-sm icon-red" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Grade 5.0 / A
+            </span>
+          </div>
+
+          <div class="car-stage">
+            <img src="assetes/s.jpg" alt="Toyota Hilux GR Sport 4WD 2024" />
+          </div>
+
+          <div class="car-card-body">
+            <div>
+              <div class="car-meta-top">
+                <span class="car-make-year">Toyota · 2024</span>
+                <div class="car-price">$29,900 <span>FOB</span></div>
+              </div>
+              <h3 class="car-model-name">Hilux GR Sport 4WD</h3>
+            </div>
+
+            <div class="car-specs-grid">
+              <div class="spec-item">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                2.4L D-4D Turbo
+              </div>
+              <div class="spec-item">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                4WD High/Low
+              </div>
+              <div class="spec-item">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="4" x2="4" y1="21" y2="14"/><line x1="4" x2="4" y1="10" y2="3"/><line x1="12" x2="12" y1="21" y2="12"/><line x1="12" x2="12" y1="8" y2="3"/><line x1="20" x2="20" y1="21" y2="16"/><line x1="20" x2="20" y1="12" y2="3"/></svg>
+                6-Speed Auto
+              </div>
+              <div class="spec-item">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+                3,400 km
+              </div>
+            </div>
+
+            <div class="car-card-actions">
+              <a href="#estimator" class="btn-inquire">
+                <span>Request Export Quote</span>
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       AUCTION & EXPORT FLOW (THE 4 STEPS WITH VECTOR ICONS)
+  ═══════════════════════════════════════════════════ -->
+  <section id="process">
+    <div class="section-wrap">
+      
+      <div class="section-eyebrow">Clear & Transparent</div>
+      <h2 class="section-title">How Japanese Export Works</h2>
+      <p class="section-desc">From selecting your vehicle in Tokyo to customs clearance at your destination port, we handle everything.</p>
+
+      <div class="process-grid">
+        
+        <!-- Step 1 -->
+        <div class="process-card">
+          <div class="process-card-top">
+            <div class="process-step-num">01</div>
+            <div class="process-icon-badge">
+              <svg class="icon icon-md" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
+            </div>
+          </div>
+          <h3 class="process-title">Source or Request</h3>
+          <p class="process-desc">Choose from our ready-to-ship stock or tell us your target spec. We search USS Tokyo, TAA, CAA, & JU daily.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="process-card">
+          <div class="process-card-top">
+            <div class="process-step-num">02</div>
+            <div class="process-icon-badge">
+              <svg class="icon icon-md" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+          </div>
+          <h3 class="process-title">Physical Inspection</h3>
+          <p class="process-desc">Our certified bilingual mechanics inspect the engine, undercarriage, odometer, and bodywork before bidding.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="process-card">
+          <div class="process-card-top">
+            <div class="process-step-num">03</div>
+            <div class="process-icon-badge">
+              <svg class="icon icon-md" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="11" r="3"/></svg>
+            </div>
+          </div>
+          <h3 class="process-title">Japanese Deregistration</h3>
+          <p class="process-desc">We purchase the car, process official export certificates through the Ministry of Land & Transport (MLIT).</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="process-card">
+          <div class="process-card-top">
+            <div class="process-step-num">04</div>
+            <div class="process-icon-badge">
+              <svg class="icon icon-md" viewBox="0 0 24 24"><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/></svg>
+            </div>
+          </div>
+          <h3 class="process-title">Secure Global Freight</h3>
+          <p class="process-desc">Loaded onto scheduled RoRo vessels or secured in containers with full tracking and insurance till delivery.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       QUALITY ASSURANCE & AUCTION GRADE GUIDE
+  ═══════════════════════════════════════════════════ -->
+  <section id="quality">
+    <div class="section-wrap">
+      <div class="quality-grid">
+        
+        <div class="quality-content">
+          <div class="section-eyebrow">Japanese Standard of Integrity</div>
+          <h2 class="section-title">Zero Guesswork. Full Documentation.</h2>
+          <p class="section-desc">
+            Unlike domestic used markets, every Japanese car passes through standardized governmental auctions where mileage tampering or undisclosed accident damage is strictly illegal.
+          </p>
+
+          <div class="quality-features">
+            <div class="q-feat-item">
+              <div class="q-feat-icon-box">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="q-feat-text">
+                <h4>Original Japanese Auction Sheet Translation</h4>
+                <p>We provide accurate English translations of official auction notes, highlighting scratches, panel replacements, and interior marks.</p>
+              </div>
+            </div>
+
+            <div class="q-feat-item">
+              <div class="q-feat-icon-box">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="q-feat-text">
+                <h4>Certified Pre-Shipment Inspections</h4>
+                <p>Compliant with JEVIC, JAAI, EAA, and QISJ standards for countries with strict import compliance (Kenya, NZ, UK, Australia).</p>
+              </div>
+            </div>
+
+            <div class="q-feat-item">
+              <div class="q-feat-icon-box">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="q-feat-text">
+                <h4>High-Resolution Yard Photography</h4>
+                <p>Receive 40+ HD photos and cold-start engine videos directly from our Yokohama & Nagoya logistics yards before shipping.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grade Guide Box with Real Vector Icons -->
+        <div class="auction-table-box">
+          <div class="atb-head">
+            <h3>
+              <svg class="icon icon-md icon-red" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Japanese Auction Grade Guide
+            </h3>
+            <p>Official grading standards used across USS, TAA, and CAA</p>
+          </div>
+
+          <div class="grade-list">
+            <div class="grade-item">
+              <span class="grade-tag">Grade S / 6</span>
+              <span class="grade-name">Brand New / Showroom Spec</span>
+              <span class="grade-status">&lt; 2,000 km</span>
+            </div>
+
+            <div class="grade-item">
+              <span class="grade-tag">Grade 5</span>
+              <span class="grade-name">Pristine Collector Condition</span>
+              <span class="grade-status">Flawless Body</span>
+            </div>
+
+            <div class="grade-item">
+              <span class="grade-tag">Grade 4.5</span>
+              <span class="grade-name">Excellent Condition</span>
+              <span class="grade-status">Minor Stone Chips Only</span>
+            </div>
+
+            <div class="grade-item">
+              <span class="grade-tag">Grade 4</span>
+              <span class="grade-name">Very Good Standard</span>
+              <span class="grade-status">Clean Daily Driver</span>
+            </div>
+
+            <div class="grade-item">
+              <span class="grade-tag">Grade R</span>
+              <span class="grade-name">Repaired History</span>
+              <span class="grade-status">Strictly Disclosed</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       INTERACTIVE FREIGHT & SHIPPING CALCULATOR (WITH REAL ICONS)
+  ═══════════════════════════════════════════════════ -->
+  <section id="estimator">
+    <div class="section-wrap">
+      
+      <div class="section-eyebrow">Worldwide Shipping</div>
+      <h2 class="section-title">Port Transit & Rates</h2>
+      <p class="section-desc">Select your destination port to view typical RoRo sailing frequency and port arrival transit times from Japan.</p>
+
+      <div class="estimator-box" style="margin-top: 2.5rem;">
+        <div class="est-grid">
+          
+          <div class="est-form">
+            <div class="form-group">
+              <label for="destPort">
+                <svg class="icon icon-sm icon-red" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                Destination Region & Port
+              </label>
+              <select id="destPort" class="form-select" onchange="updateEstimates()">
+                <option value="us_west">United States — Long Beach / Los Angeles</option>
+                <option value="us_east">United States — Baltimore / Jacksonville</option>
+                <option value="ca_west">Canada — Vancouver / New Westminster</option>
+                <option value="uk">United Kingdom — Southampton / Bristol</option>
+                <option value="au">Australia — Brisbane / Sydney / Melbourne</option>
+                <option value="nz">New Zealand — Auckland / Tauranga</option>
+                <option value="uae">United Arab Emirates — Jebel Ali, Dubai</option>
+                <option value="ke">Kenya — Mombasa Port (Kilindini)</option>
+                <option value="carib">Caribbean — Kingston / Freeport</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="vehicleType">
+                <svg class="icon icon-sm icon-red" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                Vehicle Category
+              </label>
+              <select id="vehicleType" class="form-select" onchange="updateEstimates()">
+                <option value="suv">SUV & 4WD (Land Cruiser, Fortuner, RAV4)</option>
+                <option value="sedan">Sedan & Coupe (Camry, Crown, Skyline)</option>
+                <option value="truck">Truck & Pickup (Hilux, Dyna, Canter)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="shippingMode">
+                <svg class="icon icon-sm icon-red" viewBox="0 0 24 24"><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/></svg>
+                Freight Preference
+              </label>
+              <select id="shippingMode" class="form-select" onchange="updateEstimates()">
+                <option value="roro">RoRo Vessel (Most Economical & Fast)</option>
+                <option value="container">Dedicated 20ft/40ft Marine Container</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dynamic Results Box -->
+          <div class="est-results">
+            <div>
+              <div class="er-title">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                Estimated Transit Summary
+              </div>
+              <div class="er-dest-display" id="resPortName">Long Beach, USA</div>
+            </div>
+
+            <div class="er-meta-row">
+              <div class="er-meta-item">
+                <p>
+                  <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Est. Sea Transit
+                </p>
+                <h5 id="resTransitDays">14 – 18 Days</h5>
+              </div>
+              <div class="er-meta-item">
+                <p>
+                  <svg class="icon icon-sm" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                  Sailing Frequency
+                </p>
+                <h5 id="resFrequency">2x / Month</h5>
+              </div>
+            </div>
+
+            <div>
+              <p style="font-size: 0.76rem; color: var(--gray-400); margin-bottom: 1rem;">
+                *Includes JAAI/JEVIC inspection certificate, export deregistration, & marine BL document dispatch via DHL Express.
+              </p>
+              <a href="mailto:info@carslow.com?subject=Inquiry%20from%20Website" class="btn-est-inquire" style="display: flex; width: 100%;">
+                <span>Inquire for Exact CIF Quote</span>
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       LUXURY CALL TO ACTION
+  ═══════════════════════════════════════════════════ -->
+  <section id="cta">
+    <div class="cta-glow-bg"></div>
+    <div class="cta-content">
+      <div class="cta-eyebrow">
+        <svg class="icon icon-sm icon-red" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Direct JDM Connection
+      </div>
+      <h2 class="cta-title">Your Japanese Dream Car Awaits.</h2>
+      <p class="cta-desc">
+        Looking for a specific model, auction lot number, or vintage collector car? Speak with our licensed export agents in Nagoya and Yokohama today.
+      </p>
+
+      <div class="cta-btns">
+        <a href="mailto:info@carslow.com?subject=JDM%20Car%20Inquiry" class="btn-cta-primary">
+          <span>Contact an Export Specialist</span>
+          <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="#inventory" class="btn-cta-secondary">
+          <span>Browse In-Stock Cars</span>
+          <svg class="icon icon-sm" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       FOOTER (WITH REAL LOCATION & VECTOR CONTACT ICONS)
+  ═══════════════════════════════════════════════════ -->
+  <footer>
+    <div class="section-wrap">
+      
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">CARS LOW<span class="dot">.</span></div>
+          <p class="footer-desc">
+            Premier Japanese vehicle export brokerage. Directly licensed to bid across all major auction syndicates in Japan, delivering worldwide with precision and transparency.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul class="footer-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#inventory">Current Stock</a></li>
+            <li><a href="#process">How It Works</a></li>
+            <li><a href="#quality">Auction Grading</a></li>
+            <li><a href="#estimator">Shipping Ports</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Auctions</h5>
+          <ul class="footer-links">
+            <li><a href="#quality">USS Tokyo</a></li>
+            <li><a href="#quality">TAA Yokohama</a></li>
+            <li><a href="#quality">CAA Chubu</a></li>
+            <li><a href="#quality">JU Nagoya</a></li>
+            <li><a href="#quality">Bilingual Audit</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Logistics Hubs</h5>
+          <div class="footer-contact-item">
+            <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <span>Yokohama Yard</span>
+              Daikoku Pier Terminal, Kanagawa
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <span>Nagoya Hub</span>
+              Kinjo Pier Logistics, Aichi
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <svg class="icon icon-sm" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <div>
+              <span>Direct Email</span>
+              info@carslow.com
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © 2026 Cars Low Ltd. All Rights Reserved. Japanese Automobile Export License #541012604900.
+        </div>
+        <div class="footer-ports">
+          <svg class="icon icon-sm icon-red" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+          Yokohama · Nagoya · Kobe · Osaka · Hakata
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════
+       JAVASCRIPT: INTERACTION & DYNAMICS
+  ═══════════════════════════════════════════════════ -->
+  <script>
+    // ── NAVBAR SCROLL SHADOW ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 30) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // ── MOBILE MENU TOGGLE ──
+    const hamBtn = document.getElementById('hamBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    hamBtn.addEventListener('click', () => {
+      mobileDrawer.classList.toggle('open');
+      document.body.style.overflow = mobileDrawer.classList.contains('open') ? 'hidden' : '';
+    });
+
+    document.querySelectorAll('.m-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDrawer.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ── INVENTORY CATEGORY FILTER ──
+    function filterCars(category) {
+      document.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
+      event.target.closest('.filter-pill').classList.add('active');
+
+      const cards = document.querySelectorAll('.car-card');
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-cat');
+        if (category === 'all' || cat === category) {
+          card.style.display = 'flex';
+          card.style.opacity = '1';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // ── SHIPPING TRANSIT ESTIMATOR ──
+    const transitData = {
+      us_west: { name: 'Long Beach / Los Angeles, USA', days: '14 – 18 Days', freq: '3x / Month' },
+      us_east: { name: 'Baltimore / Jacksonville, USA', days: '26 – 32 Days', freq: '2x / Month' },
+      ca_west: { name: 'Vancouver, Canada', days: '12 – 15 Days', freq: '2x / Month' },
+      uk:      { name: 'Southampton / Bristol, UK', days: '32 – 38 Days', freq: '2x / Month' },
+      au:      { name: 'Brisbane / Sydney, Australia', days: '16 – 21 Days', freq: '3x / Month' },
+      nz:      { name: 'Auckland / Tauranga, NZ', days: '18 – 24 Days', freq: '3x / Month' },
+      uae:     { name: 'Jebel Ali Port, Dubai', days: '22 – 26 Days', freq: '3x / Month' },
+      ke:      { name: 'Mombasa Port, Kenya', days: '28 – 34 Days', freq: '2x / Month' },
+      carib:   { name: 'Kingston Port, Jamaica', days: '30 – 36 Days', freq: '1x / Month' },
+    };
+
+    function updateEstimates() {
+      const portSelect = document.getElementById('destPort').value;
+      const data = transitData[portSelect] || transitData.us_west;
+
+      document.getElementById('resPortName').textContent = data.name;
+      document.getElementById('resTransitDays').textContent = data.days;
+      document.getElementById('resFrequency').textContent = data.freq;
+    }
+
+    // ── SMOOTH SCROLL FOR ALL ANCHORS ──
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
